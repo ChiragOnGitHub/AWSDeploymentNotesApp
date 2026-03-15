@@ -21,13 +21,12 @@
 
     <script>
 
-        const API = "http://localhost:5000"
 
         function addNote() {
 
             let text = document.getElementById("noteInput").value
 
-            fetch(API + "/api/notes", {
+            fetch("/api/notes", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -40,7 +39,7 @@
 
         function deleteNote(id) {
 
-            fetch(API + "/api/notes/" + id, {
+            fetch("/api/notes/" + id, {
                 method: "DELETE"
             })
                 .then(() => loadNotes())
@@ -49,7 +48,7 @@
 
         function loadNotes() {
 
-            fetch(API + "/api/notes")
+            fetch("/api/notes")
                 .then(res => res.json())
                 .then(data => {
 
