@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Notes App</h1>
+
+    <div class="input-box">
+
+        <input id="noteInput" placeholder="Write a note">
+        <button onclick="addNote()">Add</button>
+
+    </div>
+
+    <ul id="notes"></ul>
+
+    <script>
+
+        const API = "http://localhost:5000"
+
+        function addNote() {
+
+            let text = document.getElementById("noteInput").value
+
+            fetch(API + "/api/notes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text })
+            })
+                .then(() => loadNotes())
+
+        }
+
+        function deleteNote(id) {
+
+            fetch(API + "/api/notes/" + id, {
+                method: "DELETE"
+            })
+                .then(() => loadNotes())
+
+        }
+
+        function loadNotes() {
+
+            fetch(API + "/api/notes")
+                .then(res => res.json())
+                .then(data => {
+
+                    let list = document.getElementById("notes")
+                    list.innerHTML = ""
+
+                    data.forEach(n => {
+
+                        let li = document.createElement("li")
+
+                        li.innerHTML = `${n.text}<button onclick="deleteNote('${n._id}')">Delete</button>`
+                        list.appendChild(li)
+
+                    })
+
+                })
+
+        }
+
+        loadNotes()
+
+    </script>
+
+</body>
+
+</html>
