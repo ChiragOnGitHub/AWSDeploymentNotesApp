@@ -1,45 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    font-family: Arial;
-    background: #f4f4f4;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main container */
+.container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 20px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     text-align: center;
 }
 
 h1 {
-    margin-top: 40px;
+    color: white;
+    margin-bottom: 20px;
 }
 
+/* Input box */
 .input-box {
-    margin: 20px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 input {
-    padding: 10px;
-    width: 250px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
 }
 
+/* Add button */
 button {
-    padding: 10px 15px;
-    background: #3498db;
-    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
     border: none;
+    background: #00c9a7;
+    color: white;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #2980b9;
+    background: #00a68c;
+    transform: scale(1.05);
 }
 
+/* Notes list */
 ul {
     list-style: none;
-    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
+/* Each note */
 li {
     background: white;
-    margin: 10px auto;
-    padding: 10px;
-    width: 300px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
-    border-radius: 5px;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Delete button inside note */
+li button {
+    background: #ff6b6b;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+li button:hover {
+    background: #e55050;
+}
+
+/* Scrollbar styling */
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.5);
+    border-radius: 10px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
