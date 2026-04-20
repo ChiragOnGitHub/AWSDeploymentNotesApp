@@ -60,7 +60,10 @@
 
                         let li = document.createElement("li")
 
-                        li.innerHTML = `${n.text}<button onclick="deleteNote('${n._id}')">Delete</button>`
+                        li.innerHTML = `
+                                        <span>${n.text}</span>
+                                        <button onclick="deleteNote('${n._id}')">Delete</button>
+                                    `
                         list.appendChild(li)
 
                     })
